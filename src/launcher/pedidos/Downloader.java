@@ -4,12 +4,13 @@
  */
 package launcher.pedidos;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-
-import java.io.*;
 import java.net.URL;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -18,22 +19,11 @@ import java.util.zip.ZipInputStream;
  * @author NOTEJUAN
  */
 public class Downloader {
-
-    public static void download(String url, String path) throws Exception {
-        try (InputStream in = new URL(url).openStream(); FileOutputStream out = new FileOutputStream(path)) {
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-            }
-        }
-    }
     
     public static void downloadAndUnzip(String url, String destDir) throws Exception {
-        // Ruta temporal para el zip
+        
         Path tempZipPath = Files.createTempFile("update", ".zip");
-
-        // Descargar el archivo ZIP
+        
         try (InputStream in = new URL(url).openStream();
              FileOutputStream out = new FileOutputStream(tempZipPath.toFile())) {
             byte[] buffer = new byte[4096];
@@ -43,7 +33,6 @@ public class Downloader {
             }
         }
 
-        // Descomprimir el ZIP
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(tempZipPath.toFile()))) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
@@ -64,6 +53,6 @@ public class Downloader {
             }
         }
 
-        Files.delete(tempZipPath); // Opcional: borrar el zip temporal
+        Files.delete(tempZipPath);
     }
 }
