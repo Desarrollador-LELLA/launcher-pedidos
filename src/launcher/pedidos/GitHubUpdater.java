@@ -15,9 +15,9 @@ import org.json.JSONObject;
  * @author NOTEJUAN
  */
 public class GitHubUpdater {
-
-    private static final String API_URL = "https://api.github.com/repos/Desarrollador-LELLA/notas-ventas-pablo/releases/latest";
-    private static final String CURRENT_VERSION = "1.0.0"; // Cambia esto con cada versión
+                                         //https://github.com/Desarrollador-LELLA/launcher-pedidos/releases
+    private static final String API_URL = "https://api.github.com/repos/Desarrollador-LELLA/launcher-pedidos/releases/latest";
+    private static final String CURRENT_VERSION = "0.0.0"; // Cambia esto con cada versión
     private static String latestDownloadUrl = null;
 
     public static boolean isUpdateAvailable() {
