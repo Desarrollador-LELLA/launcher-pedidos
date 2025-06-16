@@ -13,7 +13,7 @@ import java.util.jar.Manifest;
  * @author NOTEJUAN
  */
 public class LauncherPedidos {
-    // VERSION 0.4.1
+    // VERSION 0.4.2
     public static void main(String[] args) {
         try {
             String destinationDir = "app";
